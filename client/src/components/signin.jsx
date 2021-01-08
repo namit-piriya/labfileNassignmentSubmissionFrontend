@@ -1,64 +1,40 @@
 import React, { Component } from "react";
-import $ from "jquery";
-import ReactDOM from "react-dom";
-// import { connect } from "react-redux";
-
-// import { actionCreator } from "../actionPath";
+import { connect } from "react-redux";
 import Wrap from "../hoc/wrap";
-import Style from "../css/styles.module.css";
-import functions from "./functions/functions";
-import { Button } from "./button";
+import {
+  authSuccess,
+  authStart,
+  authFail,
+} from "../store/actionCreators/authActionCreator";
 // import { Redirect } from "react-router";
 
 // submits signin form and gives result
 
 const SignIn = class extends Component {
-  async submitSigninForm(actor) {
-    let obj = {};
-    obj.email = $("#email").val();
-    obj.password = $("#password").val();
-    obj.dept = $("#dept").val();
-
-    console.log(obj);
-
-    if (!obj.email || !obj.password) {
-      console.log("fill some values");
-      // do some error related stuff
-    } else {
-      let result = await functions.submitForm(actor, "signin", obj);
-    }
-  }
-
-  // async componentDidMount() {
-  //   let options = <Wrap>{await functions.populateDept()}</wrap>;
-  //   ReactDOM.render(options, document.getElementById("dept"));
-  // }
-
   render() {
-    return (
-      <div>
-        <input
-          placeholder=" Your email"
-          type="email"
-          id="email"
-          className={Style.ModalInput}
-        />
-        <input
-          placeholder=" Your password"
-          type="password"
-          id="password"
-          className={Style.ModalInput}
-        />
-        <input type="checkbox" name="" id="rememberMe" />
-        <select id="dept"></select>
-        <Button
-          name="Sign In"
-          handler={() => this.submitSigninForm(this.props.actor)}
-        ></Button>
-      </div>
+    let form = (
+      <Wrap>
+        <div className="form-group">
+          <label>Email address</label>
+          <input type="email" className="form-control" id="email" />
+          <small id="emailHelp" className="form-text text-muted">
+            We'll never share your email with anyone else.
+          </small>
+        </div>
+        <div className="form-group">
+          <label>Password</label>
+          <input type="password" className="form-control" id="password" />
+        </div>
+        <div className="form-group form-check">
+          <input type="checkbox" className="form-check-input" id="rememberMe" />
+          <label className="form-check-label">Remember Me</label>
+        </div>
+      </Wrap>
     );
+    return form;
   }
 };
+
 const mapStateToProps = (state) => {
   return {
     loading: state.loading,
@@ -66,13 +42,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     submitSigninForm: (actor, "signin", obj) =>
-//       dispatch(functions.submitForm(actor, "signin", obj)),
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
-
-export default SignIn;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authSuccess: (userObj) => dispatch(authSuccess(userObj)),
+    authStart: () => dispatch(authStart()),
+    authFail: (error) => dispatch(authFail(error)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

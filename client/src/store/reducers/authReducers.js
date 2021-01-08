@@ -1,5 +1,5 @@
 import * as actionTypes from "../actionCreators/actionTypes";
-import { updateObject } from "../../util";
+import { updateObject } from "../../utils/util";
 
 const initialState = {
   token: null,
@@ -9,28 +9,30 @@ const initialState = {
   loading: false,
 };
 
-const authStart = (state = initialState, action) => {
-  console.log("khan in the auth reducer");
+const authStart = (state, action) => {
+  // console.log("khan in the auth reducer");
   return updateObject(state, { error: null, loading: true });
 };
 
-const authSuccess = (state = initialState, action) => {
+const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.userObj.token,
     email: action.userObj.email,
     error: null,
     loading: false,
+    dept: action.userObj.dept,
+    role: action.userObj.role,
   });
 };
 
-const authFail = (state = initialState, action) => {
+const authFail = (state, action) => {
   return updateObject(state, {
-    error: action.error,
+    error: action.errMsg,
     loading: false,
   });
 };
 
-const authLogout = (state = initialState, action) => {
+const authLogout = (state, action) => {
   return updateObject(state, { token: null, userId: null });
 };
 

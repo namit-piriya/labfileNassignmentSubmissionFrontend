@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import Wrap from "../../hoc/wrap";
 import ReactDOM from "react-dom";
 import $ from "jquery";
 
-import Wrap from "../../hoc/wrap";
 import Styles from "../../css/styles.module.css";
 import Button from "../Button";
 import functions from "../functions/functions";
@@ -27,7 +27,7 @@ async function submitSignupForm() {
 
 export default class TeacherSignup extends Component {
   async componentDidMount() {
-    let options = <Wrap>{await functions.populateDept()}</wrap>;
+    let options = <Wrap>{await functions.populateDept()}</Wrap>;
     ReactDOM.render(options, document.getElementById("dept"));
   }
   render() {

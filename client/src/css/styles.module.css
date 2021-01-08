@@ -1,38 +1,37 @@
 .flexContainer {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
-.mainHeader {
+.MyCardTextImg {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+}
+
+.cardImageText {
+  color: rgb(35, 146, 173);
+}
+
+#rememeberMe {
+  font-size: large;
+  color: blueviolet;
+}
+
+.MyMainHeader {
+  box-sizing: border-box;
+  font-size: 2.5rem;
   color: antiquewhite;
   margin: 0.5%;
-  padding-top: 2%;
-  height: 8vh;
+  padding-top: 1%;
+  text-align: center;
+  padding-bottom: 5%;
+  height: 2vh;
   background-color: slateblue;
   font-weight: bold;
   font-family: "Courier New", Courier, monospace;
 }
 
-.Modal {
-  position: fixed;
-  z-index: 500;
-  background-color: white;
-  width: 70%;
-  border: 1px solid #ccc;
-  box-shadow: 1px 1px 1px black;
-  /* padding: 16px; */
-  left: 15%;
-  top: 30%;
-  box-sizing: border-box;
-  transition: all 0.3s ease-out;
-}
-
-@media (min-width: 600px) {
-  .Modal {
-    width: 500px;
-    left: calc(50% - 250px);
-  }
-}
 .SignupSigninBtn {
   margin-right: 2px;
   margin-top: 2px;
@@ -48,7 +47,7 @@
   padding-left: 15%;
 }
 
-.Card {
+.MyCard {
   display: inline-block;
   background-color: rgb(93, 241, 209);
   border: 1px solid #82d4e2;
@@ -62,12 +61,12 @@
   padding: 5rem;
 }
 
-.Card:hover {
+.MyCard:hover {
   transition: all 0.4s ease-out;
   box-shadow: 0px 4px 8px rgba(44, 38, 38, 0.2);
 }
 
-.BtnPrimary {
+.MyBtnPrimary {
   font-weight: bold;
   color: #cce5e9;
   display: block;

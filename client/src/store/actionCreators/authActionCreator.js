@@ -1,8 +1,11 @@
 import * as auth from "./actionTypes";
 
 export const authStart = () => {
-  console.log("khan is here");
   return { type: auth.AUTH_START };
+};
+
+export const authFail = (error) => {
+  return { type: auth.AUTH_FAIL, payload: error };
 };
 
 export const authError = (error) => {
